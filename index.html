@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBZ</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at center, #1a0005, #000);
+    color: white;
+}
+
+/* LOGIN */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: #0a0a0a;
+    padding: 30px;
+    border-radius: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 30px #ff003c;
+}
+
+.title {
+    font-size: 26px;
+    color: #ff003c;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ff003c;
+    background: #111;
+    color: white;
+    margin-top: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: none;
+    background: #ff003c;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* DASHBOARD */
+.dashboard {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #ff003c;
+}
+
+.tabs button {
+    margin: 5px;
+    padding: 10px 15px;
+}
+
+.box {
+    background: #111;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #ff003c;
+}
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+input[type=range] {
+    width: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="container" id="login">
+    <div class="card">
+        <div class="title">GBZ XITER</div>
+        <p>Ativar sistema</p>
+        <input type="text" placeholder="Digite sua chave..." id="key">
+        <button onclick="login()">ATIVAR</button>
+    </div>
+</div>
+
+<!-- PAINEL -->
+<div class="dashboard" id="panel">
+
+    <h1>GBZ XITER</h1>
+
+    <div class="tabs">
+        <button onclick="showTab('funcoes')">Funções</button>
+        <button onclick="showTab('config')">Configuração</button>
+        <button onclick="showTab('info')">Informações</button>
+    </div>
+
+    <!-- FUNÇÕES -->
+    <div class="box" id="funcoes">
+        <div class="toggle">Modo desempenho <input type="checkbox"></div>
+        <div class="toggle">Otimização de RAM <input type="checkbox"></div>
+        <div class="toggle">Suavização de toque <input type="checkbox"></div>
+        <div class="toggle">Redução de lag <input type="checkbox"></div>
+
+        <button style="margin-top:20px;">INICIAR</button>
+    </div>
+
+    <!-- CONFIG -->
+    <div class="box" id="config" style="display:none;">
+        <p>Sensibilidade</p>
+        <input type="range">
+
+        <p>DPI</p>
+        <input type="range">
+
+        <p>Velocidade</p>
+        <input type="range">
+    </div>
+
+    <!-- INFO -->
+    <div class="box" id="info" style="display:none;">
+        <p>Versão: 1.0</p>
+        <p>Status: Ativo</p>
+        <p>Sistema: Android</p>
+    </div>
+
+</div>
+
+<script>
+function login() {
+    let key = document.getElementById("key").value;
+
+    if(key === "GBZSTAR-666") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("panel").style.display = "block";
+    } else {
+        alert("Chave inválida!");
+    }
+}
+
+function showTab(tab) {
+    document.getElementById("funcoes").style.display = "none";
+    document.getElementById("config").style.display = "none";
+    document.getElementById("info").style.display = "none";
+
+    document.getElementById(tab).style.display = "block";
+}
+</script>
+
+</body>
+</html>

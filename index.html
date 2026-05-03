@@ -6,15 +6,22 @@
 
 <title>GBZ XITER</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-    background: radial-gradient(circle, #00101a, #000);
-    font-family: 'Inter', sans-serif;
+    background:#020812;
+    font-family:'Inter',sans-serif;
     color:white;
+}
+
+/* ANIMAÇÃO */
+.fade{animation:fade .4s}
+@keyframes fade{
+    from{opacity:0;transform:translateY(10px)}
+    to{opacity:1}
 }
 
 /* CENTER */
@@ -25,15 +32,14 @@ body{
     align-items:center;
 }
 
-/* LOGIN CARD */
+/* CARD */
 .card{
     width:90%;
-    max-width:350px;
+    max-width:360px;
     padding:25px;
     border-radius:20px;
-    background:#0a0f14;
-    border:1px solid #00bfff30;
-    box-shadow:0 0 40px #00bfff40;
+    background:#071426;
+    box-shadow:0 0 40px #00bfff50;
     text-align:center;
 }
 
@@ -42,14 +48,6 @@ body{
     font-family:'Orbitron';
     color:#00bfff;
     font-size:26px;
-    letter-spacing:2px;
-}
-
-/* SUB */
-.sub{
-    margin-top:5px;
-    font-size:13px;
-    color:#aaa;
 }
 
 /* INPUT */
@@ -57,16 +55,14 @@ body{
     margin-top:20px;
     position:relative;
 }
-
 .input input{
     width:100%;
     padding:14px 14px 14px 40px;
     border-radius:12px;
-    border:1px solid #00bfff40;
-    background:#05080c;
+    border:1px solid #00bfff50;
+    background:#020812;
     color:white;
 }
-
 .input::before{
     content:"🔑";
     position:absolute;
@@ -75,23 +71,38 @@ body{
     transform:translateY(-50%);
 }
 
-/* BTN */
+/* BUTTON */
 .btn{
     margin-top:20px;
     width:100%;
     padding:14px;
-    border-radius:12px;
     border:none;
+    border-radius:12px;
     background:linear-gradient(45deg,#00bfff,#0077ff);
     color:white;
     font-weight:bold;
+    position:relative;
+    overflow:hidden;
+}
+
+/* RIPPLE */
+.btn:active::after{
+    content:"";
+    position:absolute;
+    width:200px;height:200px;
+    background:rgba(255,255,255,0.3);
+    border-radius:50%;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    animation:ripple .5s;
+}
+@keyframes ripple{
+    from{opacity:1;transform:scale(0)}
+    to{opacity:0;transform:scale(2)}
 }
 
 /* PANEL */
-.panel{
-    display:none;
-    padding:20px;
-}
+.panel{display:none;padding:20px}
 
 /* HEADER */
 .header{
@@ -113,25 +124,21 @@ body{
     justify-content:center;
     margin-top:15px;
 }
-
 .tabbox{
-    background:#0a0f14;
+    display:flex;
+    background:#071426;
     padding:5px;
     border-radius:20px;
-    display:flex;
-    gap:5px;
 }
-
 .tab{
-    padding:8px 15px;
-    border-radius:15px;
+    padding:8px 14px;
     font-size:12px;
     color:#aaa;
 }
-
 .active{
     background:#00bfff;
     color:#000;
+    border-radius:15px;
 }
 
 /* BOX */
@@ -139,8 +146,8 @@ body{
     margin-top:20px;
     padding:15px;
     border-radius:15px;
-    background:#0a0f14;
-    box-shadow:0 0 20px #00bfff30;
+    background:#071426;
+    box-shadow:0 0 20px #00bfff40;
 }
 
 /* ROW */
@@ -151,53 +158,42 @@ body{
 }
 
 /* SWITCH */
-.switch{
-    position:relative;
-    width:40px;
-    height:20px;
-}
+.switch{position:relative;width:40px;height:20px}
 .switch input{display:none}
-
 .slider{
     position:absolute;
-    width:100%;
-    height:100%;
-    background:#333;
-    border-radius:20px;
+    width:100%;height:100%;
+    background:#333;border-radius:20px;
 }
 .slider::before{
     content:"";
     position:absolute;
     width:16px;height:16px;
-    background:white;
-    border-radius:50%;
+    background:white;border-radius:50%;
     top:2px;left:2px;
     transition:.3s;
 }
-
-input:checked + .slider{
-    background:#00bfff;
-}
-input:checked + .slider::before{
-    transform:translateX(20px);
-}
+input:checked + .slider{background:#00bfff}
+input:checked + .slider::before{transform:translateX(20px)}
 
 /* RANGE */
 input[type=range]{width:100%}
 
-/* BIG BTN */
-.big{
+/* LOADING */
+.loading{
+    display:none;
+    text-align:center;
     margin-top:15px;
 }
-
-/* ANIM */
-.fade{
-    animation:fade .4s;
+.spinner{
+    width:30px;height:30px;
+    border:4px solid #00bfff33;
+    border-top:4px solid #00bfff;
+    border-radius:50%;
+    margin:auto;
+    animation:spin 1s linear infinite;
 }
-@keyframes fade{
-    from{opacity:0;transform:translateY(10px)}
-    to{opacity:1}
-}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 
@@ -207,18 +203,15 @@ input[type=range]{width:100%}
 <div class="center" id="login">
     <div class="card fade">
         <div class="title">GBZ XITER</div>
-        <div class="sub">Ativar Licença</div>
-        <div class="sub" style="font-size:11px;">Insira sua chave de ativação</div>
+        <p style="font-size:12px;color:#aaa;">Ativar Licença</p>
 
         <div class="input">
             <input id="key" placeholder="Digite sua chave...">
         </div>
 
-        <button class="btn" onclick="login()">ATIVAR LICENÇA</button>
+        <button class="btn" onclick="login()">ATIVAR</button>
 
-        <div class="sub" style="margin-top:10px;font-size:11px;">
-            Não possui licença? <span style="color:#00bfff;">Contato</span>
-        </div>
+        <div id="msg" style="margin-top:10px;font-size:12px;"></div>
     </div>
 </div>
 
@@ -226,53 +219,36 @@ input[type=range]{width:100%}
 <div class="panel fade" id="panel">
 
     <div class="header">GBZ XITER</div>
-    <div class="status">● Licença ativa - 30 dias</div>
+    <div class="status">● Ativo</div>
 
     <div class="tabs">
         <div class="tabbox">
             <div class="tab active" onclick="tab('f',this)">Funções</div>
             <div class="tab" onclick="tab('m',this)">Motor</div>
-            <div class="tab" onclick="tab('i',this)">Informações</div>
+            <div class="tab" onclick="tab('i',this)">Info</div>
         </div>
     </div>
 
-    <!-- FUNÇÕES -->
     <div class="box" id="f">
-        <div class="row">Correção de Recuo
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-        </div>
-        <div class="row">Ajuste de Sensibilidade
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-        </div>
-        <div class="row">Otimização de Toque
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-        </div>
-        <div class="row">Estabilidade de Mira
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-        </div>
+        <div class="row">Otimização <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+        <div class="row">Sensibilidade <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
 
-        <button class="btn big" onclick="start()">INICIAR</button>
+        <button class="btn" onclick="start()">INICIAR</button>
+
+        <div class="loading" id="load">
+            <div class="spinner"></div>
+            <p>Iniciando...</p>
+        </div>
     </div>
 
-    <!-- MOTOR -->
-    <div class="box" id="m" style="display:none;">
-        <p>Fator Linear</p>
-        <input type="range">
-
-        <p>Limiar de bloqueio</p>
-        <input type="range">
-
-        <p>Filtro de Ruído</p>
-        <input type="range">
+    <div class="box" id="m" style="display:none">
+        <p>Fator</p><input type="range">
+        <p>Filtro</p><input type="range">
     </div>
 
-    <!-- INFO -->
-    <div class="box" id="i" style="display:none;">
-        <p>Versão: 3.2.1</p>
-        <p>Status: Ativo</p>
-        <p>Validade: 30 dias</p>
-        <p>Servidor: BR</p>
-        <p>Compatibilidade: Android 8+</p>
+    <div class="box" id="i" style="display:none">
+        <p>Status: OK</p>
+        <p>Versão: 3.0</p>
     </div>
 
 </div>
@@ -280,6 +256,42 @@ input[type=range]{width:100%}
 <script>
 function login(){
     let k = document.getElementById("key").value.toLowerCase();
+    let msg = document.getElementById("msg");
 
     if(k === "gbzxiter-666"){
-        document.getElementById("login").style.d
+        msg.innerHTML="✔ Ativado";
+        msg.style.color="#00ff88";
+
+        setTimeout(()=>{
+            document.getElementById("login").style.display="none";
+            document.getElementById("panel").style.display="block";
+        },800);
+    }else{
+        msg.innerHTML="✖ Chave inválida";
+        msg.style.color="red";
+    }
+}
+
+function tab(id,el){
+    document.getElementById("f").style.display="none";
+    document.getElementById("m").style.display="none";
+    document.getElementById("i").style.display="none";
+
+    document.getElementById(id).style.display="block";
+
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    el.classList.add("active");
+}
+
+function start(){
+    document.getElementById("load").style.display="block";
+
+    setTimeout(()=>{
+        alert("Sistema iniciado");
+        document.getElementById("load").style.display="none";
+    },2000);
+}
+</script>
+
+</body>
+</html>

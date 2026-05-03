@@ -6,26 +6,19 @@
 
 <title>GBZ XITER</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-    background:#020812;
-    font-family:'Inter',sans-serif;
+    background: radial-gradient(circle,#001018,#000);
+    font-family:'Inter';
     color:white;
 }
 
-/* ANIMAÇÃO */
-.fade{animation:fade .4s}
-@keyframes fade{
-    from{opacity:0;transform:translateY(10px)}
-    to{opacity:1}
-}
-
 /* CENTER */
-.center{
+.screen{
     height:100vh;
     display:flex;
     justify-content:center;
@@ -38,8 +31,9 @@ body{
     max-width:360px;
     padding:25px;
     border-radius:20px;
-    background:#071426;
-    box-shadow:0 0 40px #00bfff50;
+    background:#0a1118;
+    box-shadow:0 0 40px #00bfff40;
+    border:1px solid #00bfff30;
     text-align:center;
 }
 
@@ -48,6 +42,12 @@ body{
     font-family:'Orbitron';
     color:#00bfff;
     font-size:26px;
+}
+
+/* TEXT */
+.sub{
+    font-size:12px;
+    color:#aaa;
 }
 
 /* INPUT */
@@ -60,7 +60,7 @@ body{
     padding:14px 14px 14px 40px;
     border-radius:12px;
     border:1px solid #00bfff50;
-    background:#020812;
+    background:#05080c;
     color:white;
 }
 .input::before{
@@ -71,7 +71,7 @@ body{
     transform:translateY(-50%);
 }
 
-/* BUTTON */
+/* BTN */
 .btn{
     margin-top:20px;
     width:100%;
@@ -81,28 +81,13 @@ body{
     background:linear-gradient(45deg,#00bfff,#0077ff);
     color:white;
     font-weight:bold;
-    position:relative;
-    overflow:hidden;
-}
-
-/* RIPPLE */
-.btn:active::after{
-    content:"";
-    position:absolute;
-    width:200px;height:200px;
-    background:rgba(255,255,255,0.3);
-    border-radius:50%;
-    top:50%;left:50%;
-    transform:translate(-50%,-50%);
-    animation:ripple .5s;
-}
-@keyframes ripple{
-    from{opacity:1;transform:scale(0)}
-    to{opacity:0;transform:scale(2)}
 }
 
 /* PANEL */
-.panel{display:none;padding:20px}
+.panel{
+    display:none;
+    padding:20px;
+}
 
 /* HEADER */
 .header{
@@ -111,7 +96,6 @@ body{
     color:#00bfff;
 }
 
-/* STATUS */
 .status{
     text-align:center;
     font-size:12px;
@@ -124,17 +108,20 @@ body{
     justify-content:center;
     margin-top:15px;
 }
+
 .tabbox{
     display:flex;
-    background:#071426;
+    background:#0a1118;
     padding:5px;
     border-radius:20px;
 }
+
 .tab{
     padding:8px 14px;
     font-size:12px;
     color:#aaa;
 }
+
 .active{
     background:#00bfff;
     color:#000;
@@ -146,8 +133,8 @@ body{
     margin-top:20px;
     padding:15px;
     border-radius:15px;
-    background:#071426;
-    box-shadow:0 0 20px #00bfff40;
+    background:#0a1118;
+    box-shadow:0 0 20px #00bfff30;
 }
 
 /* ROW */
@@ -160,21 +147,30 @@ body{
 /* SWITCH */
 .switch{position:relative;width:40px;height:20px}
 .switch input{display:none}
+
 .slider{
     position:absolute;
-    width:100%;height:100%;
-    background:#333;border-radius:20px;
+    width:100%;
+    height:100%;
+    background:#333;
+    border-radius:20px;
 }
 .slider::before{
     content:"";
     position:absolute;
     width:16px;height:16px;
-    background:white;border-radius:50%;
+    background:white;
+    border-radius:50%;
     top:2px;left:2px;
     transition:.3s;
 }
-input:checked + .slider{background:#00bfff}
-input:checked + .slider::before{transform:translateX(20px)}
+
+input:checked + .slider{
+    background:#00bfff;
+}
+input:checked + .slider::before{
+    transform:translateX(20px);
+}
 
 /* RANGE */
 input[type=range]{width:100%}
@@ -183,7 +179,7 @@ input[type=range]{width:100%}
 .loading{
     display:none;
     text-align:center;
-    margin-top:15px;
+    margin-top:10px;
 }
 .spinner{
     width:30px;height:30px;
@@ -200,38 +196,44 @@ input[type=range]{width:100%}
 <body>
 
 <!-- LOGIN -->
-<div class="center" id="login">
-    <div class="card fade">
+<div class="screen" id="login">
+    <div class="card">
         <div class="title">GBZ XITER</div>
-        <p style="font-size:12px;color:#aaa;">Ativar Licença</p>
+        <p class="sub">Ativar Licença</p>
+        <p class="sub">Digite sua chave para continuar</p>
 
         <div class="input">
             <input id="key" placeholder="Digite sua chave...">
         </div>
 
-        <button class="btn" onclick="login()">ATIVAR</button>
+        <button class="btn" onclick="login()">ATIVAR LICENÇA</button>
 
-        <div id="msg" style="margin-top:10px;font-size:12px;"></div>
+        <p class="sub" style="margin-top:10px;">
+            Não possui licença? <span style="color:#00bfff;">Contato</span>
+        </p>
     </div>
 </div>
 
 <!-- PANEL -->
-<div class="panel fade" id="panel">
+<div class="panel" id="panel">
 
     <div class="header">GBZ XITER</div>
-    <div class="status">● Ativo</div>
+    <div class="status">● Ativo - 30 dias</div>
 
     <div class="tabs">
         <div class="tabbox">
             <div class="tab active" onclick="tab('f',this)">Funções</div>
             <div class="tab" onclick="tab('m',this)">Motor</div>
-            <div class="tab" onclick="tab('i',this)">Info</div>
+            <div class="tab" onclick="tab('i',this)">Informações</div>
         </div>
     </div>
 
+    <!-- FUNÇÕES -->
     <div class="box" id="f">
-        <div class="row">Otimização <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-        <div class="row">Sensibilidade <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+        <div class="row">Ajuste de Precisão <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+        <div class="row">Controle de Sensibilidade <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+        <div class="row">Resposta de Toque <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+        <div class="row">Estabilidade <label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
 
         <button class="btn" onclick="start()">INICIAR</button>
 
@@ -241,14 +243,25 @@ input[type=range]{width:100%}
         </div>
     </div>
 
-    <div class="box" id="m" style="display:none">
-        <p>Fator</p><input type="range">
-        <p>Filtro</p><input type="range">
+    <!-- MOTOR -->
+    <div class="box" id="m" style="display:none;">
+        <p>Fator Linear</p>
+        <input type="range">
+
+        <p>Limiar</p>
+        <input type="range">
+
+        <p>Filtro</p>
+        <input type="range">
     </div>
 
-    <div class="box" id="i" style="display:none">
-        <p>Status: OK</p>
-        <p>Versão: 3.0</p>
+    <!-- INFO -->
+    <div class="box" id="i" style="display:none;">
+        <p>Versão: 3.2.1</p>
+        <p>Status: Ativo</p>
+        <p>Validade: 30 dias</p>
+        <p>Servidor: BR</p>
+        <p>Compatível: Android</p>
     </div>
 
 </div>
@@ -256,19 +269,12 @@ input[type=range]{width:100%}
 <script>
 function login(){
     let k = document.getElementById("key").value.toLowerCase();
-    let msg = document.getElementById("msg");
 
     if(k === "gbzxiter-666"){
-        msg.innerHTML="✔ Ativado";
-        msg.style.color="#00ff88";
-
-        setTimeout(()=>{
-            document.getElementById("login").style.display="none";
-            document.getElementById("panel").style.display="block";
-        },800);
-    }else{
-        msg.innerHTML="✖ Chave inválida";
-        msg.style.color="red";
+        document.getElementById("login").style.display="none";
+        document.getElementById("panel").style.display="block";
+    } else {
+        alert("Chave inválida");
     }
 }
 
@@ -287,8 +293,8 @@ function start(){
     document.getElementById("load").style.display="block";
 
     setTimeout(()=>{
-        alert("Sistema iniciado");
         document.getElementById("load").style.display="none";
+        alert("Sistema iniciado");
     },2000);
 }
 </script>
